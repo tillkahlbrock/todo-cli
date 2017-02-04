@@ -1,18 +1,16 @@
-package list
+package main
 
 import (
     "fmt"
     "net/http"
     "io/ioutil"
-
-    t "github.com/tillkahlbrock/todo/task"
 )
 
-func Run() {
+func List() {
   resp, _ := http.Get("http://localhost:9884/tasks")
   body, _ := ioutil.ReadAll(resp.Body)
 
-  taskList, err := t.GetTaskList([]byte(body))
+  taskList, err := GetTaskList([]byte(body))
   if err != nil {
     panic(err.Error())
   }

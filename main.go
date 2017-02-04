@@ -5,8 +5,6 @@ import (
   "os"
   "time"
 
-  "github.com/tillkahlbrock/todo/commands/list"
-  "github.com/tillkahlbrock/todo/commands/add"
   "github.com/urfave/cli"
 )
 
@@ -37,7 +35,7 @@ func main() {
         if (c.Bool("completed")) {
           fmt.Println("not implemented yet")
         } else {
-          list.Run()
+          List()
         }
         return nil
       },
@@ -53,7 +51,7 @@ func main() {
         },
       },
       Action:  func(c *cli.Context) error {
-        add.Run(title)
+        Add(title)
         return nil
       },
     },

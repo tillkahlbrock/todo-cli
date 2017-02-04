@@ -1,4 +1,4 @@
-package add
+package main
 
 import (
     "fmt"
@@ -8,7 +8,7 @@ import (
     "bytes"
 )
 
-func Run(title string) {
+func Add(title string) {
   var buffer bytes.Buffer
   buffer.WriteString("http://localhost:9884/task?title=")
   buffer.WriteString(url.QueryEscape(title))
