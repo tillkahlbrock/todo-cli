@@ -6,6 +6,7 @@ import (
   "time"
 
   "github.com/tillkahlbrock/todo/commands/list"
+  "github.com/tillkahlbrock/todo/commands/add"
   "github.com/urfave/cli"
 )
 
@@ -21,6 +22,8 @@ func main() {
       Email: "till.kahlbrock@gmail.com",
     },
   }
+
+  var title string
 
   app.Commands = []cli.Command{
     {
@@ -41,10 +44,16 @@ func main() {
     },
     {
       Name:    "add",
-      Aliases: []string{"l"},
+      Aliases: []string{"a"},
       Usage:   "add a new task to the list",
+      Flags: []cli.Flag{
+        cli.StringFlag{
+          Name: "title, t",
+          Destination: &title,
+        },
+      },
       Action:  func(c *cli.Context) error {
-        fmt.Println("Hello blurb")
+        add.Run(title)
         return nil
       },
     },
