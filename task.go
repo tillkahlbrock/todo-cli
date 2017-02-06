@@ -12,11 +12,10 @@ type TaskList struct {
   Tasks []Task `json:"tasks"`
 }
 
-func GetTaskList(body []byte) (*TaskList, error) {
-    var s = new(TaskList)
-    err := json.Unmarshal(body, &s)
-    if(err != nil){
-        panic(err.Error())
-    }
-    return s, err
+func GetTaskList(body []byte) (*TaskList) {
+    var taskList = new(TaskList)
+    err := json.Unmarshal(body, &taskList)
+    Check(err)
+
+    return taskList
 }

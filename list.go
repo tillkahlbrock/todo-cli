@@ -7,13 +7,14 @@ import (
 )
 
 func List() {
-  resp, _ := http.Get("http://localhost:9884/tasks")
-  body, _ := ioutil.ReadAll(resp.Body)
+  resp, err := http.Get("http://localhost:9884/tasks")
+  Check(err)
 
-  taskList, err := GetTaskList([]byte(body))
-  if err != nil {
-    panic(err.Error())
-  }
+  body, err := ioutil.ReadAll(resp.Body)
+  Check(err)
+
+  taskList := GetTaskList([]byte(body))
+
   for _,task := range taskList.Tasks {
     fmt.Println(task.Id)
     fmt.Println(task.Title)

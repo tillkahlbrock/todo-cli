@@ -14,12 +14,11 @@ func Add(title string) {
   buffer.WriteString(url.QueryEscape(title))
   urlString := buffer.String()
 
-  resp, _ := http.Post(urlString, "text/plain", nil)
-  body, err := ioutil.ReadAll(resp.Body)
+  resp, err := http.Post(urlString, "text/plain", nil)
+  Check(err)
 
-  if err != nil {
-    panic(err.Error)
-  }
+  body, err := ioutil.ReadAll(resp.Body)
+  Check(err)
 
   fmt.Println(string(body))
 }
