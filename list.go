@@ -6,8 +6,9 @@ import (
     "io/ioutil"
 )
 
-func List() {
-  resp, err := http.Get("http://localhost:9884/tasks")
+func List(serverUrl string) {
+  url := fmt.Sprintf("%s/tasks", serverUrl)
+  resp, err := http.Get(url)
   Check(err)
 
   body, err := ioutil.ReadAll(resp.Body)

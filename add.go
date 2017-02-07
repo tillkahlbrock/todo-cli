@@ -5,16 +5,11 @@ import (
     "net/http"
     "net/url"
     "io/ioutil"
-    "bytes"
 )
 
-func Add(title string) {
-  var buffer bytes.Buffer
-  buffer.WriteString("http://localhost:9884/task?title=")
-  buffer.WriteString(url.QueryEscape(title))
-  urlString := buffer.String()
-
-  resp, err := http.Post(urlString, "text/plain", nil)
+func Add(title, serverUrl string) {
+  url := fmt.Sprintf("%s/task?title=%s", serverUrl, url.QueryEscape(title))
+  resp, err := http.Post(url, "text/plain", nil)
   Check(err)
 
   body, err := ioutil.ReadAll(resp.Body)
