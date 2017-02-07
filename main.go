@@ -9,6 +9,12 @@ import (
 )
 
 func main() {
+  serverUrl := os.Getenv("TODO_SERVER_URL")
+  if serverUrl == "" {
+    fmt.Println("Environment variable 'TODO_SERVER_URL' must be set.")
+    os.Exit(1)
+  }
+
   app := cli.NewApp()
   app.Name = "todo"
   app.Usage = "brain extension for forgetful people"
@@ -35,7 +41,7 @@ func main() {
         if (c.Bool("completed")) {
           fmt.Println("not implemented yet")
         } else {
-          List()
+          List(serverUrl)
         }
         return nil
       },
@@ -51,7 +57,7 @@ func main() {
         },
       },
       Action:  func(c *cli.Context) error {
-        Add(title)
+        Add(title, serverUrl)
         return nil
       },
     },
