@@ -1,9 +1,16 @@
-FROM golang:1.7.5
+FROM ruby:2.1.10
 
-ADD . /go/src/github.com/tillkahlbrock/todo/
+RUN apt-get update && apt-get install -y golang
 
+RUN mkdir -p /go/src/todo
 WORKDIR /go
+ENV GOPATH=/go
+ADD . /go/src/todo
+RUN go get todo
+RUN cp /go/bin/todo /usr/bin/todo-cli
 
-RUN go get github.com/tillkahlbrock/todo
+RUN mkdir /app
+ADD . /app/
+WORKDIR /app
 
-CMD ["/go/bin/todo"]
+CMD ["/bin/sh"]
