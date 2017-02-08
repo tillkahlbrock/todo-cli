@@ -16,6 +16,11 @@ func List(serverUrl string) {
 
   taskList := GetTaskList([]byte(body))
 
+  if len(taskList.Tasks) == 0 {
+    fmt.Println("Such empty...")
+    return
+  }
+
   for _,task := range taskList.Tasks {
     fmt.Println(task.Id)
     fmt.Println(task.Title)
