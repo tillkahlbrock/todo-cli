@@ -1,0 +1,9 @@
+machine:
+  services:
+    - docker
+dependencies:
+  override:
+    - docker-compose build --no-cache
+test:
+  override:
+    - docker-compose run test
