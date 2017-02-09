@@ -1,9 +1,12 @@
-machine:
-  services:
-    - docker
-dependencies:
-  override:
-    - docker-compose build --no-cache
-test:
-  override:
-    - docker-compose run test
+version: 2
+executorType: machine
+stages:
+  build:
+    workDir: ~/todo
+    steps:
+      - type: checkout
+      - type: shell
+        name: Run the integration tests
+        command: |
+          docker-compose build --no-cache
+          docker-compose run integration-test

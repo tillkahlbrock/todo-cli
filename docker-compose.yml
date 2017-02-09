@@ -1,3 +1,5 @@
+version: "2"
+
 services:
   todo-server:
     image: till/jtodo
@@ -7,7 +9,7 @@ services:
     volumes:
       - /app
 
-  test:
+  integration-test:
     build: .
     environment:
       - TODO_SERVER_URL=http://todo-server:9884
@@ -16,6 +18,3 @@ services:
     volumes_from:
       - todo-spec
     command: bash -c "bundle install && bundle exec cucumber"
-
-volumes:
-  specs:
