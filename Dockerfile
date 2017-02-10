@@ -9,8 +9,4 @@ ADD . /go/src/todo
 RUN go get todo
 RUN cp /go/bin/todo /usr/bin/todo-cli
 
-RUN mkdir /app
-ADD . /app/
-WORKDIR /app
-
 CMD ["/bin/sh"]
