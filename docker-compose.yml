@@ -6,7 +6,8 @@ services:
   todo-spec:
     image: till/todo-spec
     volumes:
-      - /app
+      - /spec
+    command: /bin/sh
 
   test:
     build: .
@@ -16,5 +17,5 @@ services:
       - todo-server
     volumes_from:
       - todo-spec
-    working_dir: /app
+    working_dir: /spec
     command: bash -c "bundle install && bundle exec cucumber"
