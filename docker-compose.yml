@@ -18,6 +18,3 @@ services:
       - todo-spec
     working_dir: /app
     command: bash -c "bundle install && bundle exec cucumber"
-
-volumes:
-  specs:
