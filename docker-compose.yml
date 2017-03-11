@@ -1,4 +1,5 @@
 version: "2"
+
 services:
   todo-server:
     image: till/jtodo
@@ -9,7 +10,7 @@ services:
       - /spec
     command: /bin/sh
 
-  test:
+  integration-test:
     build: .
     environment:
       - TODO_SERVER_URL=http://todo-server:9884
